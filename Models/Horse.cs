@@ -1,11 +1,10 @@
 namespace Hoofd.Models;
 
-public class Horse
+using Microsoft.AspNetCore.Identity;
+
+public class Horse : IdentityUser
 {
-    public int Id { get; set; }
-    public required string Username { get; set; }
-    public required string Email { get; set; }
-    public required DateOnly Birthday { get; set; }
-    public required DateTime CreatedAt { get; set; }
-    public required DateTime UpdatedAt { get; set; }
+    public DateOnly? Birthday { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 }

@@ -1,3 +1,4 @@
+using Hoofd.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         .UseNpgsql(builder.Configuration.GetConnectionString("Default"))
         .UseSnakeCaseNamingConvention());
 
+builder.Services.AddAuthorization();
+builder.Services.AddIdentityApiEndpoints<Horse>()
+    .AddEntityFrameworkStores<AppDbContext>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -20,6 +25,8 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.MapGroup("/api/auth").MapIdentityApi<Horse>();
 
 app.UseHttpsRedirection();
 
