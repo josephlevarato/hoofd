@@ -8,7 +8,7 @@ http:
   url: "{{endpoint}}/auth/login"
   body:
     type: json
-    data: '{"email": "jhorse@gmail.com","password":"password"}'
+    data: '{"email": "jhorse@gmail.com","password":"SomeHugeP4ssword!"}'
   auth: inherit
 
 runtime:
