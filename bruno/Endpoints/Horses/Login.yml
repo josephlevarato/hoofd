@@ -1,0 +1,29 @@
+info:
+  name: Login
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{endpoint}}/auth/login"
+  body:
+    type: json
+    data: '{"email": "jhorse@gmail.com","password":"password"}'
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const cookies = res.getHeader('set-cookie')
+        const rawToken = cookies.toString().split('; ')[0]
+        const tokenValue = rawToken.split('=')[1]
+
+        bru.setEnvVar('bearer', tokenValue)
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

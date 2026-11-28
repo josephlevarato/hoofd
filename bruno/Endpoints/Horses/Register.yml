@@ -1,0 +1,57 @@
+info:
+  name: Register
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{endpoint}}/api/auth/register"
+  body:
+    type: multipart-form
+    data:
+      - name: firstName
+        type: text
+        value: Joseph
+      - name: lastName
+        type: text
+        value: Levarato
+      - name: gender
+        type: text
+        value: male
+      - name: email
+        type: text
+        value: jhorse@gmail.com
+      - name: picture
+        type: file
+        value:
+          - /home/joseph/Images/Captures d’écran/Capture d’écran du 2026-05-31 15-47-29.png
+        contentType: image/png
+      - name: biography
+        type: text
+        value: sdlfjs kljsdf lksdjf lksdjf lsdkf jsdlkf jsdlfk jdslf kjdfl kjs flksdjfldskf jsdlkf jsdlkf jdslkf jdslkf jdslk fsj
+      - name: bodyHeight
+        type: text
+        value: "130"
+      - name: bodyLength
+        type: text
+        value: "150"
+      - name: city
+        type: text
+        value: Lyon
+      - name: country
+        type: text
+        value: France
+      - name: birthday
+        type: text
+        value: 1990-01-01
+      - name: password
+        type: text
+        value: password
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
